@@ -5,7 +5,7 @@ import Link from "next/link"
 export default function Navigation() {
   return (
     <nav className="flex items-center justify-between py-4">
-      <Link href="/" className="text-lg font-weight-500 cursor-pointer">
+      <Link href="/" className="text-lg font-medium cursor-pointer">
         SofaSocietyCo.
       </Link>
 
