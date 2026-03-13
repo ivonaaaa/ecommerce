@@ -1,11 +1,16 @@
 import Navigation from "@modules/navigation/Navigation"
+import ProductCard from "@modules/product/product-card/ProductCard"
 
 export default function ProductPage() {
   return (
     <div>
       <Navigation />
-      <h1>Product page</h1>
-      <main></main>
+      <main>
+        <ProductCard />
+      </main>
+
+      {/* sitit se ovu visinu maknit nakraju */}
+      <div className="h-80"></div>
     </div>
   )
 }
