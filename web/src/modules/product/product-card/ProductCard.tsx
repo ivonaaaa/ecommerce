@@ -15,8 +15,8 @@ export default function ProductCard() {
       <div className="flex">
         <div className="flex flex-col items-center">
           <div className="flex gap-4">
-            <img src="/images/Product1.png" alt="product" className=""></img>
-            <img src="/images/Product2.png" alt="product" className=""></img>
+            <img src="/images/Product1.png" alt="product" className="" />
+            <img src="/images/Product2.png" alt="product" className="" />
           </div>
           <div className="flex gap-3 mt-4 ml-96">
             <span className="border-b-2 border-black w-4">1</span>
@@ -55,7 +55,7 @@ export default function ProductCard() {
                 src="/icons/ArrowDown.png"
                 alt="arrow down"
                 className="absolute right-4 top-9 pointer-events-none"
-              ></img>
+              />
             </div>
 
             <div className="flex gap-6">
@@ -91,9 +91,9 @@ export default function ProductCard() {
 
           <div className="flex gap-6 mt-28 mb-4">
             <div className="flex items-center justify-between border border-gray-300 rounded w-36 h-12 px-4 py-1">
-              <img src="/icons/Minus.png" alt="minus sign"></img>
+              <img src="/icons/Minus.png" alt="minus sign" />
               <p>1</p>
-              <img src="/icons/Plus.png" alt="plus sign"></img>
+              <img src="/icons/Plus.png" alt="plus sign" />
             </div>
             <Button text="Add to cart" />
           </div>
