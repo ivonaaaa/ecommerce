@@ -6,17 +6,14 @@ import Footer from "@modules/footer/Footer"
 
 export default function ProductPage() {
   return (
-    <div>
-      <Navigation />
-      <main>
+    <main>
+      <div className="px-6 lg:px-20">
+        <Navigation />
         <ProductCard />
         <CollectionInspiredInterior />
         <RelatedProducts />
-      </main>
+      </div>
       <Footer />
-
-      {/* sitit se ovu visinu maknit nakraju */}
-      <div className="h-80"></div>
-    </div>
+    </main>
   )
 }
