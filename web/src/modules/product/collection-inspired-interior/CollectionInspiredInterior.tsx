@@ -16,7 +16,7 @@ export default function CollectionInspiredInterior() {
         alt="sofa name"
         className="w-screen max-w-none -mx-24 lg:my-20"
       />
-      <div className="flex flex-col lg:flex.row lg:gap-28">
+      <div className="flex flex-col lg:flex-row lg:gap-28">
         <img
           src="/images/CollectionInspiredInterior3.png"
           alt="sofa name"

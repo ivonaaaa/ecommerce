@@ -1,6 +1,7 @@
 import Navigation from "@modules/navigation/Navigation"
 import ProductCard from "@modules/product/product-card/ProductCard"
 import CollectionInspiredInterior from "@modules/product/collection-inspired-interior/CollectionInspiredInterior"
+import RelatedProducts from "@modules/product/related-products/RelatedProducts"
 
 export default function ProductPage() {
   return (
@@ -9,6 +10,7 @@ export default function ProductPage() {
       <main>
         <ProductCard />
         <CollectionInspiredInterior />
+        <RelatedProducts />
       </main>
 
       {/* sitit se ovu visinu maknit nakraju */}
