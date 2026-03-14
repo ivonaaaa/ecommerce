@@ -11,12 +11,25 @@ export default function ProductCard() {
   const colors = ["Dark Gray", "Black", "Light Gray"]
 
   return (
-    <section className="mt-16">
-      <div className="flex">
+    <section className="lg:mt-16">
+      <div className="flex flex-col lg:flex-row">
         <div className="flex flex-col items-center">
-          <div className="flex gap-4">
-            <img src="/images/Product1.png" alt="product" className="" />
-            <img src="/images/Product2.png" alt="product" className="" />
+          <div className="flex lg:gap-4">
+            <img
+              src="/images/Product0.png"
+              alt="product"
+              className="lg:hidden"
+            />
+            <img
+              src="/images/Product1.png"
+              alt="product"
+              className="hidden lg:flex"
+            />
+            <img
+              src="/images/Product2.png"
+              alt="product"
+              className="hidden lg:flex"
+            />
           </div>
           <div className="flex gap-3 mt-4 ml-96">
             <span className="border-b-2 border-black w-4">1</span>
@@ -24,11 +37,11 @@ export default function ProductCard() {
           </div>
         </div>
 
-        <div className="bg-white px-20 ml-24">
+        <div className="bg-white px-20 lg:ml-24">
           <p className="text-gray-400">Modern Luxe</p>
-          <h1 className="text-3xl font-medium my-3">Paloma Haven</h1>
-          <p className="text-xl">€12000</p>
-          <p className="max-w-[56rem] my-10">
+          <h1 className="lg:text-3xl font-medium my-3">Paloma Haven</h1>
+          <p className="text-lg lg:text-xl">€12000</p>
+          <p className="lg:max-w-[56rem] my-10">
             Minimalistic designs, neutral colors, and high-quality textures.
             Perfect for those who seek comfort with a clean and understated
             aesthetic. This collection brings the essence of Scandinavian
@@ -89,7 +102,7 @@ export default function ProductCard() {
             </div>
           </div>
 
-          <div className="flex gap-6 mt-28 mb-4">
+          <div className="flex lg:gap-6 mt-28 mb-4">
             <div className="flex items-center justify-between border border-gray-300 rounded w-36 h-12 px-4 py-1">
               <img src="/icons/Minus.png" alt="minus sign" />
               <p>1</p>

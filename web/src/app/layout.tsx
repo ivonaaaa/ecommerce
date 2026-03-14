@@ -27,7 +27,7 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={monaSans.variable}>
       <body>
-        <main className="px-20">{props.children}</main>
+        <main className="px-6 lg:px-20">{props.children}</main>
       </body>
     </html>
   )

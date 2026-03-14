@@ -9,27 +9,21 @@ export default function Navigation() {
         SofaSocietyCo.
       </Link>
 
-      <div className="flex gap-8">
-        <Link href="/" className="cursor-pointer">
-          About
-        </Link>
-        <Link href="/" className="cursor-pointer">
-          Inspiration
-        </Link>
-        <Link href="/" className="cursor-pointer">
-          Shop
-        </Link>
+      <div className="hidden md:flex gap-8">
+        <Link href="/">About</Link>
+        <Link href="/">Inspiration</Link>
+        <Link href="/">Shop</Link>
       </div>
 
-      <div className="flex items-center gap-7 cursor-pointer">
-        <div className="flex items-center gap-1">
+      <div className="flex items-center md:gap-7 cursor-pointer">
+        <div className="hidden md:flex items-center gap-1">
           <p>HR</p>
           <img src="/icons/ArrowDown.png" alt="search icon" />
         </div>
         <img
           src="/icons/Search.png"
           alt="search icon"
-          className="cursor-pointer"
+          className="hidden md:flex"
         />
         <img
           src="/icons/Bag.png"
