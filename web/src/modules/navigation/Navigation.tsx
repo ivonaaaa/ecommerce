@@ -4,8 +4,8 @@ import Link from "next/link"
 
 export default function Navigation() {
   return (
-    <nav className="flex items-center justify-between py-4">
-      <Link href="/" className="text-lg font-medium cursor-pointer">
+    <nav className="flex items-center justify-between px-2 py-6 lg:px-0 lg:py-4">
+      <Link href="/" className="text-2xl lg:text-lg font-medium cursor-pointer">
         SofaSocietyCo.
       </Link>
 
@@ -15,7 +15,7 @@ export default function Navigation() {
         <Link href="/">Shop</Link>
       </div>
 
-      <div className="flex items-center md:gap-7 cursor-pointer">
+      <div className="flex gap-8 items-center md:gap-7 cursor-pointer">
         <div className="hidden md:flex items-center gap-1">
           <p>HR</p>
           <img src="/icons/ArrowDown.png" alt="search icon" />
@@ -29,6 +29,11 @@ export default function Navigation() {
           src="/icons/Bag.png"
           alt="bag/cart icon"
           className="cursor-pointer"
+        />
+        <img
+          src="/icons/Menu.png"
+          alt="menu icon"
+          className="cursor-pointer lg:hidden"
         />
       </div>
     </nav>
