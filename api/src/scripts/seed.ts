@@ -43,7 +43,7 @@ const updateStoreCurrencies = createWorkflow(
                 currency_code: currency.currency_code,
                 is_default: currency.is_default ?? false,
               };
-            }
+            },
           ),
         },
       };
@@ -52,7 +52,7 @@ const updateStoreCurrencies = createWorkflow(
     const stores = updateStoresStep(normalizedInput);
 
     return new WorkflowResponse(stores);
-  }
+  },
 );
 
 export default async function seedDemoData({ container }: ExecArgs) {
@@ -74,7 +74,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
   if (!defaultSalesChannel.length) {
     // create the default sales channel
     const { result: salesChannelResult } = await createSalesChannelsWorkflow(
-      container
+      container,
     ).run({
       input: {
         salesChannelsData: [
@@ -137,7 +137,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
 
   logger.info("Seeding stock location data...");
   const { result: stockLocationResult } = await createStockLocationsWorkflow(
-    container
+    container,
   ).run({
     input: {
       locations: [
@@ -373,7 +373,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
   logger.info("Seeding product data...");
 
   const { result: categoryResult } = await createProductCategoriesWorkflow(
-    container
+    container,
   ).run({
     input: {
       product_categories: [
@@ -401,494 +401,261 @@ export default async function seedDemoData({ container }: ExecArgs) {
     input: {
       products: [
         {
-          title: "Medusa T-Shirt",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Shirts")!.id,
-          ],
+          title: "Paloma Haven",
+          subtitle: "Modern Luxe",
           description:
-            "Reimagine the feeling of a classic T-shirt. With our cotton T-shirts, everyday essentials no longer have to be ordinary.",
-          handle: "t-shirt",
-          weight: 400,
+            "Minimalistic designs, neutral colors, and high-quality textures. Perfect for those who seek comfort with a clean and understated aesthetic. This collection brings the essence of Scandinavian elegance to your living room.",
+          handle: "paloma-haven",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-front.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product0.png",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-black-back.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product1.png",
             },
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/tee-white-back.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product2.png",
             },
           ],
           options: [
-            {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
-            {
-              title: "Color",
-              values: ["Black", "White"],
-            },
+            { title: "Material", values: ["Linen", "Leather"] },
+            { title: "Color", values: ["Dark Gray", "Black", "Light Gray"] },
           ],
           variants: [
             {
-              title: "S / Black",
-              sku: "SHIRT-S-BLACK",
-              options: {
-                Size: "S",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Dark Gray",
+              sku: "PALOMA-LINEN-DARKGRAY",
+              options: { Material: "Linen", Color: "Dark Gray" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
             {
-              title: "S / White",
-              sku: "SHIRT-S-WHITE",
-              options: {
-                Size: "S",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Black",
+              sku: "PALOMA-LINEN-BLACK",
+              options: { Material: "Linen", Color: "Black" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
             {
-              title: "M / Black",
-              sku: "SHIRT-M-BLACK",
-              options: {
-                Size: "M",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Light Gray",
+              sku: "PALOMA-LINEN-LIGHTGRAY",
+              options: { Material: "Linen", Color: "Light Gray" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
             {
-              title: "M / White",
-              sku: "SHIRT-M-WHITE",
-              options: {
-                Size: "M",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Leather / Dark Gray",
+              sku: "PALOMA-LEATHER-DARKGRAY",
+              options: { Material: "Leather", Color: "Dark Gray" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
             {
-              title: "L / Black",
-              sku: "SHIRT-L-BLACK",
-              options: {
-                Size: "L",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Leather / Black",
+              sku: "PALOMA-LEATHER-BLACK",
+              options: { Material: "Leather", Color: "Black" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
             {
-              title: "L / White",
-              sku: "SHIRT-L-WHITE",
-              options: {
-                Size: "L",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Leather / Light Gray",
+              sku: "PALOMA-LEATHER-LIGHTGRAY",
+              options: { Material: "Leather", Color: "Light Gray" },
+              prices: [{ amount: 1200000, currency_code: "eur" }],
+            } as any,
+          ],
+          sales_channels: [{ id: defaultSalesChannel[0].id }],
+        },
+
+        {
+          title: "Camden Retreat",
+          subtitle: "Boho Chic",
+          description:
+            "Boho Chic sofa with relaxed aesthetics and modern comfort...",
+          handle: "camden-retreat",
+          status: ProductStatus.PUBLISHED,
+          shipping_profile_id: shippingProfile.id,
+          images: [
             {
-              title: "XL / Black",
-              sku: "SHIRT-XL-BLACK",
-              options: {
-                Size: "XL",
-                Color: "Black",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL / White",
-              sku: "SHIRT-XL-WHITE",
-              options: {
-                Size: "XL",
-                Color: "White",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts1.png",
             },
           ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
+          options: [
+            { title: "Material", values: ["Linen", "Leather"] },
+            { title: "Color", values: ["Dark Gray", "Black", "Light Gray"] },
           ],
+          variants: [
+            {
+              title: "Linen / Dark Gray",
+              sku: "CAMDEN-LINEN-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Dark Gray" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Linen / Black",
+              sku: "CAMDEN-LINEN-BLACK",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Black" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Linen / Light Gray",
+              sku: "CAMDEN-LINEN-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Light Gray" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Leather / Dark Gray",
+              sku: "CAMDEN-LEATHER-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Dark Gray" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Leather / Black",
+              sku: "CAMDEN-LEATHER-BLACK",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Black" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Leather / Light Gray",
+              sku: "CAMDEN-LEATHER-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Light Gray" },
+              prices: [{ amount: 100000, currency_code: "eur" }],
+            } as any,
+          ],
+          sales_channels: [{ id: defaultSalesChannel[0].id }],
         },
         {
-          title: "Medusa Sweatshirt",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Sweatshirts")!.id,
-          ],
-          description:
-            "Reimagine the feeling of a classic sweatshirt. With our cotton sweatshirt, everyday essentials no longer have to be ordinary.",
-          handle: "sweatshirt",
-          weight: 400,
+          title: "Oslo Drift",
+          subtitle: "Scandinavian Simplicity",
+          description: "Scandinavian simplicity with modern touch...",
+          handle: "oslo-drift",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatshirt-vintage-back.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts2.png",
             },
           ],
           options: [
-            {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
+            { title: "Material", values: ["Linen", "Leather"] },
+            { title: "Color", values: ["Dark Gray", "Black", "Light Gray"] },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATSHIRT-S",
-              options: {
-                Size: "S",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Dark Gray",
+              sku: "OSLO-LINEN-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Dark Gray" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
             {
-              title: "M",
-              sku: "SWEATSHIRT-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Black",
+              sku: "OSLO-LINEN-BLACK",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Black" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
             {
-              title: "L",
-              sku: "SWEATSHIRT-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Light Gray",
+              sku: "OSLO-LINEN-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Light Gray" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
             {
-              title: "XL",
-              sku: "SWEATSHIRT-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Leather / Dark Gray",
+              sku: "OSLO-LEATHER-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Dark Gray" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
+            {
+              title: "Leather / Black",
+              sku: "OSLO-LEATHER-BLACK",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Black" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
+            {
+              title: "Leather / Light Gray",
+              sku: "OSLO-LEATHER-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Light Gray" },
+              prices: [{ amount: 200000, currency_code: "eur" }],
+              compare_at_price: 300000,
+            } as any,
           ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
+          sales_channels: [{ id: defaultSalesChannel[0].id }],
         },
         {
-          title: "Medusa Sweatpants",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Pants")!.id,
-          ],
-          description:
-            "Reimagine the feeling of classic sweatpants. With our cotton sweatpants, everyday essentials no longer have to be ordinary.",
-          handle: "sweatpants",
-          weight: 400,
+          title: "Sutton Royale",
+          subtitle: "Modern Luxe",
+          description: "Modern Luxe premium sofa.",
+          handle: "sutton-royale",
           status: ProductStatus.PUBLISHED,
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/sweatpants-gray-back.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts3.png",
             },
           ],
           options: [
-            {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
+            { title: "Material", values: ["Linen", "Leather"] },
+            { title: "Color", values: ["Dark Gray", "Black", "Light Gray"] },
           ],
           variants: [
             {
-              title: "S",
-              sku: "SWEATPANTS-S",
-              options: {
-                Size: "S",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Dark Gray",
+              sku: "SUTTON-LINEN-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Dark Gray" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
             {
-              title: "M",
-              sku: "SWEATPANTS-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Black",
+              sku: "SUTTON-LINEN-BLACK",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Black" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
             {
-              title: "L",
-              sku: "SWEATPANTS-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Linen / Light Gray",
+              sku: "SUTTON-LINEN-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Linen", Color: "Light Gray" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
             {
-              title: "XL",
-              sku: "SWEATPANTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
+              title: "Leather / Dark Gray",
+              sku: "SUTTON-LEATHER-DARKGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Dark Gray" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Leather / Black",
+              sku: "SUTTON-LEATHER-BLACK",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Black" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
+            {
+              title: "Leather / Light Gray",
+              sku: "SUTTON-LEATHER-LIGHTGRAY",
+              manage_inventory: false,
+              options: { Material: "Leather", Color: "Light Gray" },
+              prices: [{ amount: 250000, currency_code: "eur" }],
+            } as any,
           ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
-        },
-        {
-          title: "Medusa Shorts",
-          category_ids: [
-            categoryResult.find((cat) => cat.name === "Merch")!.id,
-          ],
-          description:
-            "Reimagine the feeling of classic shorts. With our cotton shorts, everyday essentials no longer have to be ordinary.",
-          handle: "shorts",
-          weight: 400,
-          status: ProductStatus.PUBLISHED,
-          shipping_profile_id: shippingProfile.id,
-          images: [
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-front.png",
-            },
-            {
-              url: "https://medusa-public-images.s3.eu-west-1.amazonaws.com/shorts-vintage-back.png",
-            },
-          ],
-          options: [
-            {
-              title: "Size",
-              values: ["S", "M", "L", "XL"],
-            },
-          ],
-          variants: [
-            {
-              title: "S",
-              sku: "SHORTS-S",
-              options: {
-                Size: "S",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "M",
-              sku: "SHORTS-M",
-              options: {
-                Size: "M",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "L",
-              sku: "SHORTS-L",
-              options: {
-                Size: "L",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-            {
-              title: "XL",
-              sku: "SHORTS-XL",
-              options: {
-                Size: "XL",
-              },
-              prices: [
-                {
-                  amount: 10,
-                  currency_code: "eur",
-                },
-                {
-                  amount: 15,
-                  currency_code: "usd",
-                },
-              ],
-            },
-          ],
-          sales_channels: [
-            {
-              id: defaultSalesChannel[0].id,
-            },
-          ],
+          sales_channels: [{ id: defaultSalesChannel[0].id }],
         },
       ],
     },
