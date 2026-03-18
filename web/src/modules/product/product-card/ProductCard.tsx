@@ -2,8 +2,13 @@
 
 import { useState } from "react"
 import Button from "../../common/components/Button"
+import { HttpTypes } from "@medusajs/types/dist/bundles"
 
-export default function ProductCard() {
+export default function ProductCard({
+  product,
+}: {
+  product: HttpTypes.StoreProduct
+}) {
   const [selectedMaterial, setSelectedMaterial] = useState("Linen")
   const [selectedColor, setSelectedColor] = useState("Dark Gray")
 
