@@ -410,13 +410,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product0.png",
-            },
-            {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product1.png",
-            },
-            {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/Product2.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/PalomaHaven.png",
             },
           ],
           options: [
@@ -474,7 +468,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts1.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/CamdenRetreat.png",
             },
           ],
           options: [
@@ -536,7 +530,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts2.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/OsloDrift.png",
             },
           ],
           options: [
@@ -604,7 +598,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/RelatedProducts3.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/SuttonRoyale.png",
             },
           ],
           options: [

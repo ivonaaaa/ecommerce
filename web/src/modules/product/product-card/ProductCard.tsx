@@ -3,6 +3,7 @@
 import { useState } from "react"
 import Button from "../../common/components/Button"
 import { HttpTypes } from "@medusajs/types/dist/bundles"
+import { COLORS } from "@lib/constants/colors"
 
 export default function ProductCard({
   product,
@@ -12,8 +13,25 @@ export default function ProductCard({
   const [selectedMaterial, setSelectedMaterial] = useState("Linen")
   const [selectedColor, setSelectedColor] = useState("Dark Gray")
 
-  const materials = ["Linen", "Leather"]
-  const colors = ["Dark Gray", "Black", "Light Gray"]
+  const materials =
+    product.options
+      ?.find((o) => o.title === "Material")
+      ?.values?.map((v) => v.value) || []
+  const colors =
+    product.options
+      ?.find((o) => o.title === "Color")
+      ?.values?.map((v) => v.value) || []
+  const selectedVariant = product.variants?.find(
+    (v) =>
+      v.options?.find(
+        (o) => o.option?.title === "Material" && o.value === selectedMaterial
+      ) &&
+      v.options?.find(
+        (o) => o.option?.title === "Color" && o.value === selectedColor
+      )
+  )
+  const price = selectedVariant?.calculated_price?.calculated_amount || ""
+  const images = product.images || []
 
   return (
     <section className="lg:mt-16">
@@ -21,18 +39,18 @@ export default function ProductCard({
         <div className="flex flex-col items-center">
           <div className="flex lg:gap-4">
             <img
-              src="/images/Product0.png"
-              alt="product"
+              src={images[0].url}
+              alt={product.title}
               className="lg:hidden w-screen max-w-none -mx-6"
             />
             <img
-              src="/images/Product1.png"
-              alt="product"
+              src={images[0].url}
+              alt={product.title}
               className="hidden lg:flex"
             />
             <img
-              src="/images/Product2.png"
-              alt="product"
+              src={images[0].url}
+              alt={product.title}
               className="hidden lg:flex"
             />
           </div>
@@ -43,16 +61,13 @@ export default function ProductCard({
         </div>
 
         <div className="bg-white mt-12 lg:mt-0 lg:ml-24 lg:px-20">
-          <p className="text-gray-400">Modern Luxe</p>
+          <p className="text-gray-400">{product.subtitle}</p>
           <h1 className="text-2xl lg:text-3xl font-medium my-2 lg:my-3">
-            Paloma Haven
+            {product.title}
           </h1>
-          <p className="text-2xl lg:text-xl">€12000</p>
+          <p className="text-2xl lg:text-xl">{(price as any) / 100}€</p>
           <p className="text-xs text-gray-400 lg:text-base lg:text-black lg:max-w-[56rem] my-8 lg:my-10">
-            Minimalistic designs, neutral colors, and high-quality textures.
-            Perfect for those who seek comfort with a clean and understated
-            aesthetic. This collection brings the essence of Scandinavian
-            elegance to your living room.
+            {product.description}
           </p>
           <div>
             <div className="flex gap-6">
@@ -86,23 +101,15 @@ export default function ProductCard({
               {colors.map((color) => (
                 <button
                   key={color}
-                  value={color}
                   onClick={() => setSelectedColor(color)}
                   className="flex flex-col items-center gap-1"
                 >
                   <span
                     className="w-8 h-8"
-                    style={{
-                      backgroundColor:
-                        color === "Dark Gray"
-                          ? "#b3b3b3"
-                          : color === "Black"
-                          ? "#000000"
-                          : "#d9d9d9",
-                    }}
+                    style={{ backgroundColor: COLORS[color] }}
                   />
                   {selectedColor === color && (
-                    <span className="w-8 h-0.5 bg-black"></span>
+                    <span className="w-8 h-0.5 bg-black" />
                   )}
                 </button>
               ))}

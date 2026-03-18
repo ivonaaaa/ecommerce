@@ -10,7 +10,10 @@ export default async function ProductPage({
 }: {
   params: { handle: string }
 }) {
-  const { products } = await sdk.store.product.list({ handle: params.handle })
+  const { products } = await sdk.store.product.list({
+    handle: params.handle,
+    region_id: "reg_01KKZ66QPD7EC3EH3PDK01H18Q",
+  })
   const product = products[0]
 
   return (
