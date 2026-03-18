@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react"
-import Button from "../../common/components/Button"
+import Button from "../../common/Button"
 import { HttpTypes } from "@medusajs/types/dist/bundles"
 import { COLORS } from "@lib/constants/colors"
 

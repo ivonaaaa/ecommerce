@@ -1,7 +1,7 @@
 "use client"
 
 import Link from "next/link"
-import Button from "../common/components/Button"
+import Button from "../common/Button"
 
 export default function Footer() {
   return (

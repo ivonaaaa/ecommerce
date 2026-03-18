@@ -410,7 +410,7 @@ export default async function seedDemoData({ container }: ExecArgs) {
           shipping_profile_id: shippingProfile.id,
           images: [
             {
-              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/PalomaHaven.png",
+              url: "https://raw.githubusercontent.com/ivonaaaa/ecommerce/main/web/public/images/PalomaHaven.jpg",
             },
           ],
           options: [
