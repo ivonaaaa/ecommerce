@@ -3,14 +3,17 @@ import ProductCard from "@modules/product/product-card/ProductCard"
 import CollectionInspiredInterior from "@modules/product/collection-inspired-interior/CollectionInspiredInterior"
 import RelatedProducts from "@modules/product/related-products/RelatedProducts"
 import Footer from "@modules/footer/Footer"
-import { getProductByHandle } from "@lib/data/products"
+import { getProductByHandle, getRelatedProducts } from "@lib/data/products"
 
 export default async function ProductPage({
   params,
 }: {
   params: { handle: string }
 }) {
-  const product = await getProductByHandle(params.handle)
+  const [product, relatedProducts] = await Promise.all([
+    getProductByHandle(params.handle),
+    getRelatedProducts(params.handle),
+  ])
 
   return (
     <main>
@@ -18,7 +21,7 @@ export default async function ProductPage({
         <Navigation />
         <ProductCard product={product} />
         <CollectionInspiredInterior />
-        <RelatedProducts />
+        <RelatedProducts relatedProducts={relatedProducts} />
       </div>
       <Footer />
     </main>
