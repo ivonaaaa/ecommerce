@@ -9,7 +9,7 @@ export default function Navigation() {
         SofaSocietyCo.
       </Link>
 
-      <div className="hidden md:flex gap-8">
+      <div className="hidden md:flex gap-8 -ml-24">
         <Link href="/">About</Link>
         <Link href="/">Inspiration</Link>
         <Link href="/">Shop</Link>

@@ -12,13 +12,13 @@ export default async function ProductPage({
 }) {
   const { products } = await sdk.store.product.list({
     handle: params.handle,
-    region_id: "reg_01KKZ66QPD7EC3EH3PDK01H18Q",
+    region_id: "reg_01KM1M0JFJQANAHGS7BF05GGM7",
   })
   const product = products[0]
 
   return (
     <main>
-      <div className="px-6 lg:px-20">
+      <div className="px-6 lg:px-20 overflow-hidden">
         <Navigation />
         <ProductCard product={product} />
         <CollectionInspiredInterior />

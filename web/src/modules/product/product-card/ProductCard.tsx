@@ -1,6 +1,7 @@
 "use client"
 
 import { useState } from "react"
+import ProductSlideShow from "./ProductSlideShow"
 import Button from "../../common/Button"
 import { HttpTypes } from "@medusajs/types/dist/bundles"
 import { COLORS } from "@lib/constants/colors"
@@ -36,31 +37,11 @@ export default function ProductCard({
   return (
     <section className="lg:mt-16">
       <div className="flex flex-col lg:flex-row">
-        <div className="flex flex-col items-center">
-          <div className="flex lg:gap-4">
-            <img
-              src={images[0].url}
-              alt={product.title}
-              className="lg:hidden w-screen max-w-none -mx-6"
-            />
-            <img
-              src={images[0].url}
-              alt={product.title}
-              className="hidden lg:flex"
-            />
-            <img
-              src={images[0].url}
-              alt={product.title}
-              className="hidden lg:flex"
-            />
-          </div>
-          <div className="flex gap-3 -mt-12 lg:mt-4 lg:ml-96">
-            <span className="border-b-2 border-black w-4">1</span>
-            <span>2</span>
-          </div>
+        <div className="w-screen lg:w-auto -ml-6 lg:ml-0">
+          <ProductSlideShow images={images} title={product.title} />
         </div>
 
-        <div className="bg-white mt-12 lg:mt-0 lg:ml-24 lg:px-20">
+        <div className="bg-white mt-12 lg:mt-0 lg:ml-8 lg:px-20">
           <p className="text-gray-400">{product.subtitle}</p>
           <h1 className="text-2xl lg:text-3xl font-medium my-2 lg:my-3">
             {product.title}
