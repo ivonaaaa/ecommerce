@@ -4,6 +4,7 @@ import { useState } from "react"
 import ProductSlideShow from "./ProductSlideShow"
 import Button from "../../common/Button"
 import { HttpTypes } from "@medusajs/types/dist/bundles"
+import { findVariant } from "@lib/util/product"
 import { COLORS } from "@lib/constants/colors"
 
 export default function ProductCard({
@@ -22,15 +23,12 @@ export default function ProductCard({
     product.options
       ?.find((o) => o.title === "Color")
       ?.values?.map((v) => v.value) || []
-  const selectedVariant = product.variants?.find(
-    (v) =>
-      v.options?.find(
-        (o) => o.option?.title === "Material" && o.value === selectedMaterial
-      ) &&
-      v.options?.find(
-        (o) => o.option?.title === "Color" && o.value === selectedColor
-      )
+  const selectedVariant = findVariant(
+    product.variants ?? undefined,
+    selectedMaterial,
+    selectedColor
   )
+
   const price = selectedVariant?.calculated_price?.calculated_amount || ""
   const images = product.images || []
 
