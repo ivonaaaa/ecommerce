@@ -3,18 +3,14 @@ import ProductCard from "@modules/product/product-card/ProductCard"
 import CollectionInspiredInterior from "@modules/product/collection-inspired-interior/CollectionInspiredInterior"
 import RelatedProducts from "@modules/product/related-products/RelatedProducts"
 import Footer from "@modules/footer/Footer"
-import { sdk } from "@lib/config"
+import { getProductByHandle } from "@lib/data/products"
 
 export default async function ProductPage({
   params,
 }: {
   params: { handle: string }
 }) {
-  const { products } = await sdk.store.product.list({
-    handle: params.handle,
-    region_id: "reg_01KM1M0JFJQANAHGS7BF05GGM7",
-  })
-  const product = products[0]
+  const product = await getProductByHandle(params.handle)
 
   return (
     <main>
