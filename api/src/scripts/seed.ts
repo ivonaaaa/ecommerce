@@ -3,6 +3,8 @@ import {
   ContainerRegistrationKeys,
   Modules,
   ProductStatus,
+  PriceListStatus,
+  PriceListType,
 } from "@medusajs/framework/utils";
 import {
   createWorkflow,
@@ -14,6 +16,7 @@ import {
   createInventoryLevelsWorkflow,
   createProductCategoriesWorkflow,
   createProductsWorkflow,
+  createPriceListsWorkflow,
   createRegionsWorkflow,
   createSalesChannelsWorkflow,
   createShippingOptionsWorkflow,
@@ -543,48 +546,42 @@ export default async function seedDemoData({ container }: ExecArgs) {
               sku: "OSLO-LINEN-DARKGRAY",
               manage_inventory: false,
               options: { Material: "Linen", Color: "Dark Gray" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
             {
               title: "Linen / Black",
               sku: "OSLO-LINEN-BLACK",
               manage_inventory: false,
               options: { Material: "Linen", Color: "Black" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
             {
               title: "Linen / Light Gray",
               sku: "OSLO-LINEN-LIGHTGRAY",
               manage_inventory: false,
               options: { Material: "Linen", Color: "Light Gray" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
             {
               title: "Leather / Dark Gray",
               sku: "OSLO-LEATHER-DARKGRAY",
               manage_inventory: false,
               options: { Material: "Leather", Color: "Dark Gray" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
             {
               title: "Leather / Black",
               sku: "OSLO-LEATHER-BLACK",
               manage_inventory: false,
               options: { Material: "Leather", Color: "Black" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
             {
               title: "Leather / Light Gray",
               sku: "OSLO-LEATHER-LIGHTGRAY",
               manage_inventory: false,
               options: { Material: "Leather", Color: "Light Gray" },
-              prices: [{ amount: 200000, currency_code: "eur" }],
-              compare_at_price: 300000,
+              prices: [{ amount: 300000, currency_code: "eur" }],
             } as any,
           ],
           sales_channels: [{ id: defaultSalesChannel[0].id }],
@@ -656,6 +653,32 @@ export default async function seedDemoData({ container }: ExecArgs) {
   });
   logger.info("Finished seeding product data.");
 
+  const productModule = container.resolve(Modules.PRODUCT);
+  const [osloDrift] = await productModule.listProducts({
+    handle: "oslo-drift",
+  });
+  const osloVariants = await productModule.listProductVariants({
+    product_id: [osloDrift.id],
+  });
+
+  await createPriceListsWorkflow(container).run({
+    input: {
+      price_lists_data: [
+        {
+          title: "Oslo Drift Sale",
+          description: "Sale price for Oslo Drift",
+          status: PriceListStatus.ACTIVE,
+          prices: osloVariants.map((variant) => ({
+            variant_id: variant.id,
+            amount: 200000,
+            currency_code: "eur",
+          })),
+        },
+      ],
+    },
+  });
+  logger.info("Created Oslo Drift sale price list");
+
   logger.info("Seeding inventory levels.");
 
   const { data: inventoryItems } = await query.graph({
@@ -678,6 +701,5 @@ export default async function seedDemoData({ container }: ExecArgs) {
       inventory_levels: inventoryLevels,
     },
   });
-
   logger.info("Finished seeding inventory levels data.");
 }
