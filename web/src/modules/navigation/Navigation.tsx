@@ -1,10 +1,12 @@
 "use client"
 
 import Link from "next/link"
+import { useState } from "react"
 import { useCart } from "@lib/context/CartContext"
 
 export default function Navigation() {
   const { cartCount } = useCart()
+  const [menuOpen, setMenuOpen] = useState(false)
 
   return (
     <nav className="flex items-center justify-between px-2 py-6 lg:px-0 lg:py-4">
@@ -36,12 +38,36 @@ export default function Navigation() {
             </span>
           )}
         </div>
-        <img
-          src="/icons/Menu.png"
-          alt="menu icon"
-          className="cursor-pointer lg:hidden"
-        />
+        <button onClick={() => setMenuOpen(true)} className="lg:hidden">
+          <img src="/icons/Menu.png" alt="menu icon" />
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="fixed inset-0 bg-white z-20 flex flex-col px-6 py-6">
+          <div className="flex justify-between items-center">
+            <span className="text-2xl font-medium">SofaSocietyCo.</span>
+            <button onClick={() => setMenuOpen(false)}>
+              <img
+                src="/icons/Plus.png"
+                alt="close menu"
+                className="w-4 h-4 rotate-45"
+              />
+            </button>
+          </div>
+          <div className="flex flex-col gap-6 mt-16 text-xl">
+            <Link href="/" onClick={() => setMenuOpen(false)}>
+              About
+            </Link>
+            <Link href="/" onClick={() => setMenuOpen(false)}>
+              Inspiration
+            </Link>
+            <Link href="/" onClick={() => setMenuOpen(false)}>
+              Shop
+            </Link>
+          </div>
+        </div>
+      )}
     </nav>
   )
 }
