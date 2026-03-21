@@ -1,3 +1,4 @@
+import { CartProvider } from "@lib/context/CartContext"
 import localFont from "next/font/local"
 import "styles/globals.css"
 
@@ -21,7 +22,9 @@ export default function RootLayout(props: { children: React.ReactNode }) {
   return (
     <html lang="en" className={monaSans.variable}>
       <body>
-        <main>{props.children}</main>
+        <CartProvider>
+          <main>{props.children}</main>
+        </CartProvider>
       </body>
     </html>
   )

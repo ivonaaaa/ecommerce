@@ -1,4 +1,4 @@
-import { StorePrice } from "@medusajs/types"
+import { HttpTypes, StorePrice } from "@medusajs/types"
 
 export type FeaturedProduct = {
   id: string
@@ -21,4 +21,12 @@ export type StoreFreeShippingPrice = StorePrice & {
   target_reached: boolean
   target_remaining: number
   remaining_percentage: number
+}
+
+export type CartContext = {
+  cart: HttpTypes.StoreCart | undefined
+  cartCount: number
+  addToCart: (variantId: string, quantity: number) => Promise<void>
+  removeFromCart: (lineItemId: string, quantity: number) => Promise<void>
+  updateQuantity: (lineItemId: string, quantity: number) => Promise<void>
 }
