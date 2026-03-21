@@ -46,12 +46,12 @@ export default function Navigation() {
       {menuOpen && (
         <div className="fixed inset-0 bg-white z-20 flex flex-col px-6 py-6">
           <div className="flex justify-between items-center">
-            <span className="text-2xl font-medium">SofaSocietyCo.</span>
+            <span className="text-2xl font-medium ml-2">SofaSocietyCo.</span>
             <button onClick={() => setMenuOpen(false)}>
               <img
                 src="/icons/Plus.png"
                 alt="close menu"
-                className="w-4 h-4 rotate-45"
+                className="mr-2 w-4 h-4 rotate-45"
               />
             </button>
           </div>

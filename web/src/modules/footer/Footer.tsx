@@ -56,7 +56,7 @@ export default function Footer() {
               </div>
             </div>
             <p className="text-xs lg:text-sm text-gray-400">
-              By subscribing your agree with out{" "}
+              By subscribing your agree with our{" "}
               <span className="underline cursor-pointer">Privacy Policy</span>{" "}
               and provide consent to receive updates from our company.
             </p>

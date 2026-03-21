@@ -53,7 +53,7 @@ export default function ProductCard({
           <h1 className="text-2xl lg:text-3xl font-medium my-2 lg:my-3">
             {product.title}
           </h1>
-          <p className="text-2xl lg:text-xl">{(price as any) / 100}€</p>
+          <p className="text-2xl lg:text-xl">{(price as number) / 100}€</p>
           <p className="text-xs text-gray-400 lg:text-base lg:text-black lg:max-w-[56rem] my-8 lg:my-10">
             {product.description}
           </p>

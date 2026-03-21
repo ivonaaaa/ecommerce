@@ -26,7 +26,7 @@ export default function CollectionInspiredInterior() {
           <h1 className="text-2xl lg:text-5xl lg:leading-normal font-medium mt-8 lg:mt-20 mb-8 lg:mb-6 lg:pr-20">
             The Paloma Haven sofa is a masterpiece of minimalism and luxury.
           </h1>
-          <a href="" className="lg:text-2xl underline">
+          <a href="/" className="lg:text-2xl underline">
             See more out of 'Modern Luxe' collection
           </a>
         </div>

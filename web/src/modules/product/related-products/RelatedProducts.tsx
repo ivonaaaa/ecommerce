@@ -46,7 +46,7 @@ export default function RelatedProducts({
                 {isOnSale ? (
                   <div className="flex justify-between lg:flex-col">
                     <p className="text-xs lg:text-base font-medium text-red-500">
-                      {price! / 100}€
+                      {price ? `${price / 100}€` : ""}
                     </p>
                     <p className="text-xs lg:text-base text-gray-400 line-through">
                       {compareAt / 100}€

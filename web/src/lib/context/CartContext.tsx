@@ -2,13 +2,7 @@
 
 import { createContext, useContext, useState, useEffect } from "react"
 import { CartContext as CartContextType } from "../../types/global"
-import {
-  createCart,
-  getCart,
-  addItem,
-  removeItem,
-  updateItem,
-} from "@lib/data/cart"
+import { createCart, getCart, addItem, updateItem } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
 
 const CART_ID_COOKIE = "cart_id"
@@ -44,12 +38,6 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart(updatedCart)
   }
 
-  const removeFromCart = async (lineItemId: string) => {
-    if (!cart) return
-    const updatedCart = await removeItem(cart.id, lineItemId)
-    setCart(updatedCart)
-  }
-
   const updateQuantity = async (lineItemId: string, quantity: number) => {
     if (!cart) return
     const updatedCart = await updateItem(cart.id, lineItemId, quantity)
@@ -58,7 +46,7 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   return (
     <CartContext.Provider
-      value={{ cart, cartCount, addToCart, removeFromCart, updateQuantity }}
+      value={{ cart, cartCount, addToCart, updateQuantity }}
     >
       {children}
     </CartContext.Provider>

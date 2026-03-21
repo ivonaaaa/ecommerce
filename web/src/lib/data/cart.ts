@@ -26,12 +26,6 @@ export async function addItem(
   return cart
 }
 
-export async function removeItem(cartId: string, lineItemId: string) {
-  await sdk.store.cart.deleteLineItem(cartId, lineItemId)
-  const cart = await getCart(cartId)
-  return cart
-}
-
 export async function updateItem(
   cartId: string,
   lineItemId: string,
