@@ -4,6 +4,7 @@ import { createContext, useContext, useState, useEffect } from "react"
 import { CartContext as CartContextType } from "../../types/global"
 import { createCart, getCart, addItem, updateItem } from "@lib/data/cart"
 import { HttpTypes } from "@medusajs/types"
+import medusaError from "@lib/util/medusa-error"
 
 const CART_ID_COOKIE = "cart_id"
 const CartContext = createContext<CartContextType | undefined>(undefined)
@@ -34,14 +35,22 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
 
   const addToCart = async (variantId: string, quantity: number) => {
     if (!cart) return
-    const updatedCart = await addItem(cart.id, variantId, quantity)
-    setCart(updatedCart)
+    try {
+      const updatedCart = await addItem(cart.id, variantId, quantity)
+      setCart(updatedCart)
+    } catch (error) {
+      throw medusaError(error)
+    }
   }
 
   const updateQuantity = async (lineItemId: string, quantity: number) => {
     if (!cart) return
-    const updatedCart = await updateItem(cart.id, lineItemId, quantity)
-    setCart(updatedCart)
+    try {
+      const updatedCart = await updateItem(cart.id, lineItemId, quantity)
+      setCart(updatedCart)
+    } catch (error) {
+      throw medusaError(error)
+    }
   }
 
   return (

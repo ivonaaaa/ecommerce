@@ -5,7 +5,9 @@ export function findVariant(
   selectedMaterial: string,
   selectedColor: string
 ) {
-  return variants?.find(
+  if (!variants?.length) return null
+
+  const variant = variants?.find(
     (v) =>
       v.options?.find(
         (o) => o.option?.title === "Material" && o.value === selectedMaterial
@@ -14,4 +16,5 @@ export function findVariant(
         (o) => o.option?.title === "Color" && o.value === selectedColor
       )
   )
+  return variant ?? null
 }

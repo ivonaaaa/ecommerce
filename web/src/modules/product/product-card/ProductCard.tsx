@@ -7,6 +7,7 @@ import { COLORS } from "@lib/constants/colors"
 import { useCart } from "@lib/context/CartContext"
 import ProductSlideShow from "./ProductSlideShow"
 import Button from "../../common/Button"
+import toast from "react-hot-toast"
 
 export default function ProductCard({
   product,
@@ -30,7 +31,7 @@ export default function ProductCard({
     selectedColor
   )
 
-  const price = selectedVariant?.calculated_price?.calculated_amount || ""
+  const price = selectedVariant?.calculated_price?.calculated_amount ?? 0
   const images = product.images || []
 
   const [quantity, setQuantity] = useState(1)
@@ -38,7 +39,12 @@ export default function ProductCard({
 
   const handleAddToCart = async () => {
     if (!selectedVariant?.id) return
-    await addToCart(selectedVariant.id, quantity)
+    try {
+      await addToCart(selectedVariant.id, quantity)
+      toast.success("Successfully added to cart")
+    } catch (error) {
+      toast.error("Something went wrong")
+    }
   }
 
   return (
@@ -103,6 +109,7 @@ export default function ProductCard({
               ))}
             </div>
           </div>
+          {!selectedVariant && <p>This combination is not available</p>}
 
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mt-12 lg:mt-28 mb-4">
             <div className="flex items-center justify-center lg:justify-between gap-4 lg:gap-0 border border-gray-300 rounded w-full lg:w-36 h-12 px-4 py-1">
@@ -114,7 +121,11 @@ export default function ProductCard({
                 <img src="/icons/Plus.png" alt="plus sign" />
               </button>
             </div>
-            <Button text="Add to cart" onClick={handleAddToCart} />
+            <Button
+              text={selectedVariant ? "Add to cart" : "Unavailable"}
+              onClick={handleAddToCart}
+              disabled={!selectedVariant}
+            />
           </div>
           <p className="text-xs text-gray-400 lg:text-base">
             Estimate delivery 2-3 days

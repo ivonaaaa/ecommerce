@@ -18,10 +18,10 @@ export default function RelatedProducts({
         {relatedProducts.toReversed().map((product, index) => {
           const image = product.images?.[0].url
           const price =
-            product.variants?.[0].calculated_price?.calculated_amount
+            product.variants?.[0].calculated_price?.calculated_amount ?? 0
           const compareAt =
-            product.variants?.[0].calculated_price?.original_amount
-          const isOnSale = compareAt && compareAt > (price || 0)
+            product.variants?.[0].calculated_price?.original_amount ?? 0
+          const isOnSale = compareAt && compareAt > price
 
           return (
             <Link
