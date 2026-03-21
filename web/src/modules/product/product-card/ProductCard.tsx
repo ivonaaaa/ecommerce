@@ -1,11 +1,12 @@
 "use client"
 
-import { useState } from "react"
-import ProductSlideShow from "./ProductSlideShow"
-import Button from "../../common/Button"
 import { HttpTypes } from "@medusajs/types/dist/bundles"
+import { useState } from "react"
 import { findVariant } from "@lib/util/product"
 import { COLORS } from "@lib/constants/colors"
+import { useCart } from "@lib/context/CartContext"
+import ProductSlideShow from "./ProductSlideShow"
+import Button from "../../common/Button"
 
 export default function ProductCard({
   product,
@@ -31,6 +32,14 @@ export default function ProductCard({
 
   const price = selectedVariant?.calculated_price?.calculated_amount || ""
   const images = product.images || []
+
+  const [quantity, setQuantity] = useState(1)
+  const { addToCart } = useCart()
+
+  const handleAddToCart = async () => {
+    if (!selectedVariant?.id) return
+    await addToCart(selectedVariant.id, quantity)
+  }
 
   return (
     <section className="lg:mt-16">
@@ -97,11 +106,15 @@ export default function ProductCard({
 
           <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 mt-12 lg:mt-28 mb-4">
             <div className="flex items-center justify-center lg:justify-between gap-4 lg:gap-0 border border-gray-300 rounded w-full lg:w-36 h-12 px-4 py-1">
-              <img src="/icons/Minus.png" alt="minus sign" />
-              <p>1</p>
-              <img src="/icons/Plus.png" alt="plus sign" />
+              <button onClick={() => setQuantity((q) => Math.max(1, q - 1))}>
+                <img src="/icons/Minus.png" alt="minus sign" />
+              </button>
+              <p>{quantity}</p>
+              <button onClick={() => setQuantity((q) => q + 1)}>
+                <img src="/icons/Plus.png" alt="plus sign" />
+              </button>
             </div>
-            <Button text="Add to cart" />
+            <Button text="Add to cart" onClick={handleAddToCart} />
           </div>
           <p className="text-xs text-gray-400 lg:text-base">
             Estimate delivery 2-3 days

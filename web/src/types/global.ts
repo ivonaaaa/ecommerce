@@ -27,6 +27,6 @@ export type CartContext = {
   cart: HttpTypes.StoreCart | undefined
   cartCount: number
   addToCart: (variantId: string, quantity: number) => Promise<void>
-  removeFromCart: (lineItemId: string, quantity: number) => Promise<void>
+  removeFromCart: (lineItemId: string) => Promise<void>
   updateQuantity: (lineItemId: string, quantity: number) => Promise<void>
 }

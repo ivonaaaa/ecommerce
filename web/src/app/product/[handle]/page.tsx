@@ -10,9 +10,10 @@ export default async function ProductPage({
 }: {
   params: { handle: string }
 }) {
+  const { handle } = await params
   const [product, relatedProducts] = await Promise.all([
-    getProductByHandle(params.handle),
-    getRelatedProducts(params.handle),
+    getProductByHandle(handle),
+    getRelatedProducts(handle),
   ])
 
   return (
