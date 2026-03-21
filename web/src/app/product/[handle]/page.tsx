@@ -3,6 +3,7 @@ import ProductCard from "@modules/product/product-card/ProductCard"
 import CollectionInspiredInterior from "@modules/product/collection-inspired-interior/CollectionInspiredInterior"
 import RelatedProducts from "@modules/product/related-products/RelatedProducts"
 import Footer from "@modules/footer/Footer"
+import { notFound } from "next/navigation"
 import { getProductByHandle, getRelatedProducts } from "@lib/data/products"
 
 export default async function ProductPage({
@@ -15,6 +16,8 @@ export default async function ProductPage({
     getProductByHandle(handle),
     getRelatedProducts(handle),
   ])
+
+  if (!product) notFound()
 
   return (
     <main>
